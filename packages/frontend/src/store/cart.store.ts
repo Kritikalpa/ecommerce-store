@@ -32,7 +32,7 @@ export const useCartStore = create<CartStore>((set) => ({
 
   addToCart: async (productId: string, quantity: number) => {
     const cart = await addItem(productId, quantity);
-    set({ cart, isDrawerOpen: true });
+    set({ cart });
   },
 
   updateQuantity: async (productId: string, quantity: number) => {

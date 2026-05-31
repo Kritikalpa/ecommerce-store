@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import corsPlugin from './plugins/cors';
+import { productRoutes } from './routes/product.routes';
 import { cartRoutes } from './routes/cart.routes';
 import { orderRoutes } from './routes/order.routes';
 import { adminRoutes } from './routes/admin.routes';
@@ -11,6 +12,7 @@ const fastify = Fastify({
 async function start(): Promise<void> {
   await fastify.register(corsPlugin);
 
+  await fastify.register(productRoutes);
   await fastify.register(cartRoutes);
   await fastify.register(orderRoutes);
   await fastify.register(adminRoutes);

@@ -3,17 +3,16 @@ import { useCartStore } from '../../store/cart.store';
 
 interface CartItemProps {
   item: CartItemType;
-  productName: string;
 }
 
-export default function CartItem({ item, productName }: CartItemProps) {
+export default function CartItem({ item }: CartItemProps) {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
   return (
     <div className="flex items-center gap-4 py-4 border-b border-gray-100">
       <div className="flex-1">
-        <h4 className="text-sm font-medium text-gray-900">{productName}</h4>
+        <h4 className="text-sm font-medium text-gray-900">{item.productName}</h4>
         <p className="text-sm text-gray-500">${(item.unitPrice / 100).toFixed(2)}</p>
       </div>
       <div className="flex items-center gap-2">

@@ -35,6 +35,7 @@ export function addItem(sessionId: string, productId: string, quantity: number):
   } else {
     cart.items.push({
       productId,
+      productName: product.name,
       quantity,
       unitPrice: product.price,
     });

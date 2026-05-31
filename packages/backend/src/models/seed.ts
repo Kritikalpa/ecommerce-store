@@ -23,7 +23,7 @@ export function seedProducts(): Map<string, Product> {
       name: 'Wireless Earbuds',
       description: 'Premium sound quality with active noise cancellation',
       price: 15999,
-      imageUrl: 'https://images.unsplash.com/photo-1590658268037-6bf12f032f55?auto=format&fit=crop&w=400',
+      imageUrl: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=400',
       stock: 100,
     },
     {
@@ -55,7 +55,7 @@ export function seedProducts(): Map<string, Product> {
       name: 'Notebook Bundle',
       description: 'Pack of 3 dotted-grid notebooks with hardcover',
       price: 2999,
-      imageUrl: 'https://images.unsplash.com/photo-1531346878377-a5be20880e17?auto=format&fit=crop&w=400',
+      imageUrl: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=400',
       stock: 200,
     },
     {

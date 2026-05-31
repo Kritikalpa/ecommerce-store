@@ -31,7 +31,7 @@ export default function CartDrawer() {
             <p className="text-center text-gray-500 py-8">Your cart is empty</p>
           ) : (
             cart.items.map((item) => (
-              <CartItem key={item.productId} item={item} productName={`Product ${item.productId}`} />
+              <CartItem key={item.productId} item={item} />
             ))
           )}
         </div>

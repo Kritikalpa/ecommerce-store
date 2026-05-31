@@ -7,9 +7,22 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const addToCart = useCartStore((state) => state.addToCart);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const cart = useCartStore((state) => state.cart);
 
-  const handleAddToCart = () => {
+  const cartItem = cart?.items.find((item) => item.productId === product.id);
+  const cartCount = cartItem?.quantity ?? 0;
+
+  const handleIncrease = () => {
     addToCart(product.id, 1);
+  };
+
+  const handleDecrease = () => {
+    if (cartCount <= 1) {
+      updateQuantity(product.id, 0);
+    } else {
+      updateQuantity(product.id, cartCount - 1);
+    }
   };
 
   return (
@@ -26,12 +39,30 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="text-xl font-bold text-gray-900">
             ${(product.price / 100).toFixed(2)}
           </span>
-          <button
-            onClick={handleAddToCart}
-            className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-          >
-            Add to Cart
-          </button>
+          {cartCount > 0 ? (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleDecrease}
+                className="w-8 h-8 flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-50"
+              >
+                -
+              </button>
+              <span className="w-6 text-center text-sm font-medium">{cartCount}</span>
+              <button
+                onClick={handleIncrease}
+                className="w-8 h-8 flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-50"
+              >
+                +
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleIncrease}
+              className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+            >
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
     </div>
