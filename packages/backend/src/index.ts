@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import Fastify from 'fastify';
 import corsPlugin from './plugins/cors';
 import { productRoutes } from './routes/product.routes';

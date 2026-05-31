@@ -12,6 +12,7 @@
   "dependencies": {
     "@ecommerce/shared": "workspace:*",
     "@fastify/cors": "^10.0.0",
+    "dotenv": "^17.4.2",
     "fastify": "^5.2.0",
     "fastify-plugin": "^5.1.0"
   },
