@@ -1,4 +1,5 @@
 import type { Product } from '@ecommerce/shared';
+import { Link } from 'react-router-dom';
 import { useCartStore } from '../../store/cart.store';
 
 interface ProductCardProps {
@@ -26,7 +27,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+    <Link to={`/products/${product.id}`} className="block bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
       <img
         src={product.imageUrl}
         alt={product.name}
@@ -42,14 +43,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           {cartCount > 0 ? (
             <div className="flex items-center gap-2">
               <button
-                onClick={handleDecrease}
+                onClick={(e) => { e.preventDefault(); handleDecrease(); }}
                 className="w-8 h-8 flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-50"
               >
                 -
               </button>
               <span className="w-6 text-center text-sm font-medium">{cartCount}</span>
               <button
-                onClick={handleIncrease}
+                onClick={(e) => { e.preventDefault(); handleIncrease(); }}
                 className="w-8 h-8 flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-50"
               >
                 +
@@ -57,7 +58,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
           ) : (
             <button
-              onClick={handleIncrease}
+              onClick={(e) => { e.preventDefault(); handleIncrease(); }}
               className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
             >
               Add to Cart
@@ -65,6 +66,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
