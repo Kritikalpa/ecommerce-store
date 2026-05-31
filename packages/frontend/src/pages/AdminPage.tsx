@@ -95,7 +95,7 @@ export default function AdminPage() {
       {stats && (
         <DiscountCodeManager
           adminKey={adminKey}
-          pendingCount={0}
+          pendingCount={stats.pendingDiscountGeneration}
           discountCodes={stats.discountCodes}
           onRefresh={handleRefresh}
         />

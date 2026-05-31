@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCartStore } from '../store/cart.store';
 import { checkout } from '../api/order.api';
+import { validateDiscountCode } from '../api/discount.api';
 import DiscountInput from '../components/checkout/DiscountInput';
 
 export default function CheckoutPage() {
@@ -36,9 +37,9 @@ export default function CheckoutPage() {
     setIsLoading(true);
     setIsValid(null);
     try {
-      const order = await checkout({ discountCode: code });
-      setAppliedCode(order.discountCode ?? null);
-      setIsValid(!!order.discountCode);
+      await validateDiscountCode(code);
+      setAppliedCode(code);
+      setIsValid(true);
     } catch {
       setIsValid(false);
     } finally {

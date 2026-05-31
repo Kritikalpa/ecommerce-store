@@ -3,15 +3,15 @@
 > tsc && vite build
 
 vite v6.4.2 building for production...
-(node:79278) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/kritikalpasaha/Desktop/personal_work/ecommerce-store/packages/frontend/postcss.config.js?t=1780250214117 is not specified and it doesn't parse as CommonJS.
+(node:92684) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/kritikalpasaha/Desktop/personal_work/ecommerce-store/packages/frontend/postcss.config.js?t=1780253134253 is not specified and it doesn't parse as CommonJS.
 Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
 To eliminate this warning, add "type": "module" to /Users/kritikalpasaha/Desktop/personal_work/ecommerce-store/packages/frontend/package.json.
 (Use `node --trace-warnings ...` to show where the warning was created)
 transforming...
-✓ 107 modules transformed.
+✓ 108 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   0.40 kB │ gzip:  0.27 kB
+dist/index.html                   0.40 kB │ gzip:  0.28 kB
 dist/assets/index-kfGd60Hj.css   14.84 kB │ gzip:  3.52 kB
-dist/assets/index-C7SHdYHH.js   230.03 kB │ gzip: 75.16 kB
-✓ built in 660ms
+dist/assets/index-C2yZqHp8.js   230.17 kB │ gzip: 75.22 kB
+✓ built in 640ms

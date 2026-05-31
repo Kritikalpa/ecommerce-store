@@ -7,6 +7,7 @@ export interface AdminStats {
   totalRevenue: number;
   totalDiscountGiven: number;
   discountCodes: Array<{ code: string; isUsed: boolean; usedInOrderId?: string }>;
+  pendingDiscountGeneration: number;
 }
 
 /**
@@ -16,9 +17,11 @@ export interface AdminStats {
  * - Total revenue (sum of order totals, after discounts)
  * - Total discount amount given
  * - List of all discount codes with their usage status
+ * - Number of pending discount code generations
  */
 export function getStats(): AdminStats {
   const orders = store.orders;
+  const pendingDiscountGeneration = store.pendingDiscountGeneration;
 
   const totalOrders = orders.length;
   const totalItemsPurchased = orders.reduce((sum, order) => sum + order.items.reduce((itemSum, item) => itemSum + item.quantity, 0), 0);
@@ -40,5 +43,6 @@ export function getStats(): AdminStats {
     totalRevenue,
     totalDiscountGiven,
     discountCodes,
+    pendingDiscountGeneration,
   };
 }

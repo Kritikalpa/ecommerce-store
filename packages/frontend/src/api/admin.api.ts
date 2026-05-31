@@ -6,6 +6,7 @@ export interface AdminStats {
   totalRevenue: number;
   totalDiscountGiven: number;
   discountCodes: Array<{ code: string; isUsed: boolean; usedInOrderId?: string }>;
+  pendingDiscountGeneration: number;
 }
 
 export interface GeneratedDiscountCode {
