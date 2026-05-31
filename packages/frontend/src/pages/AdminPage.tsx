@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import StatsPanel from '../components/admin/StatsPanel';
 import DiscountCodeManager from '../components/admin/DiscountCodeManager';
 import { getStats } from '../api/admin.api';
@@ -11,7 +11,14 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (adminKey) {
+      fetchStats();
+    }
+  }, []);
+  
   const fetchStats = useCallback(async () => {
+    console.log('Fetching stats with admin key:', adminKey);
     if (!adminKey) return;
     setIsLoading(true);
     setError(null);

@@ -9,6 +9,14 @@ export interface AdminStats {
   discountCodes: Array<{ code: string; isUsed: boolean; usedInOrderId?: string }>;
 }
 
+/**
+ * Aggregates store statistics from the in-memory store:
+ * - Total order count
+ * - Total items purchased across all orders
+ * - Total revenue (sum of order totals, after discounts)
+ * - Total discount amount given
+ * - List of all discount codes with their usage status
+ */
 export function getStats(): AdminStats {
   const orders = store.orders;
 

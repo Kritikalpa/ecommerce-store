@@ -1,6 +1,9 @@
 import type { DiscountCode } from '@ecommerce/shared';
 import { store } from '../store';
 
+/**
+ * Generates a random 4-character alphanumeric string for discount code suffix.
+ */
 function generateRandomCode(): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let result = '';
@@ -10,6 +13,9 @@ function generateRandomCode(): string {
   return result;
 }
 
+/**
+ * Reads discount configuration from environment variables with defaults.
+ */
 export function getDiscountConfig(): { everyNthOrder: number; percentage: number } {
   return {
     everyNthOrder: parseInt(process.env.DISCOUNT_EVERY_NTH_ORDER ?? '5', 10),
@@ -17,6 +23,11 @@ export function getDiscountConfig(): { everyNthOrder: number; percentage: number
   };
 }
 
+/**
+ * Checks if the current order count is a multiple of N (from config).
+ * If so, increments the pending discount generation counter.
+ * Called after each successful checkout.
+ */
 export function checkAndIncrementPendingDiscount(): void {
   const { everyNthOrder } = getDiscountConfig();
   const orderCount = store.orders.length;
@@ -26,6 +37,11 @@ export function checkAndIncrementPendingDiscount(): void {
   }
 }
 
+/**
+ * Generates a new discount code if there are pending generations available.
+ * Format: SAVE{X}-{RANDOM_4_CHARS} e.g. SAVE10-A1B2.
+ * Decrements the pending counter after generation.
+ */
 export function generateDiscountCode(): DiscountCode {
   if (store.pendingDiscountGeneration <= 0) {
     throw new Error('No pending discount codes to generate');
@@ -48,6 +64,10 @@ export function generateDiscountCode(): DiscountCode {
   return discountCode;
 }
 
+/**
+ * Validates a discount code: checks existence and that it hasn't been used.
+ * Returns null if no code is provided, throws for invalid or used codes.
+ */
 export function validateDiscountCode(code?: string): DiscountCode | null {
   if (!code) {
     return null;
@@ -66,6 +86,10 @@ export function validateDiscountCode(code?: string): DiscountCode | null {
   return discountCode;
 }
 
+/**
+ * Calculates the discount amount for a given subtotal and optional code.
+ * Uses Math.floor to avoid floating-point rounding issues.
+ */
 export function calculateDiscount(subtotal: number, code?: string): { discountAmount: number; appliedCode?: string } {
   const discount = validateDiscountCode(code);
 
@@ -77,6 +101,9 @@ export function calculateDiscount(subtotal: number, code?: string): { discountAm
   return { discountAmount, appliedCode: discount.code };
 }
 
+/**
+ * Marks a discount code as used and records the order ID it was used in.
+ */
 export function markDiscountCodeAsUsed(code: string, orderId: string): void {
   const discountCode = store.discountCodes.get(code);
 
