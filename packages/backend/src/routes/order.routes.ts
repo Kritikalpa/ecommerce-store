@@ -3,10 +3,24 @@ import { sessionMiddleware } from '../middleware/session.middleware';
 import { checkout, getOrder } from '../services/order.service';
 
 export async function orderRoutes(fastify: FastifyInstance): Promise<void> {
-  fastify.post('/api/orders/checkout', { onRequest: [sessionMiddleware] }, async (request, reply) => {
-    const sessionId = (request as any).sessionId;
-    return checkout(sessionId);
-  });
+  fastify.post<{ Body: { discountCode?: string } }>(
+    '/api/orders/checkout',
+    {
+      onRequest: [sessionMiddleware],
+      schema: {
+        body: {
+          type: 'object',
+          properties: {
+            discountCode: { type: 'string' },
+          },
+        },
+      },
+    },
+    async (request, reply) => {
+      const sessionId = (request as any).sessionId;
+      return checkout(sessionId, { discountCode: request.body.discountCode });
+    }
+  );
 
   fastify.get<{ Params: { id: string } }>('/api/orders/:id', {
     schema: {
