@@ -4,11 +4,7 @@ A fullstack monorepo ecommerce application with a Node.js/TypeScript REST API ba
 
 ## Product Preview
 
-<div align="center">
-  <a href="https://www.loom.com/share/b4bc04a4d15948dfb32030cadc759bbe">
-    <img src="https://cdn.loom.com/sessions/thumbnails/b4bc04a4d15948dfb32030cadc759bbe-filmstrip-with-play.gif" alt="Product Preview" width="640" />
-  </a>
-</div>
+[![Watch the product demo](https://img.shields.io/badge/🎬-Watch%20Product%20Demo-blue?style=for-the-badge&logo=loom)](https://www.loom.com/share/b4bc04a4d15948dfb32030cadc759bbe)
 
 ## Tech Stack
 
