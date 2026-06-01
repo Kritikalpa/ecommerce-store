@@ -93,6 +93,7 @@ DISCOUNT_PERCENTAGE=10
 | PUT | `/api/cart/items/:productId` | Update item quantity |
 | DELETE | `/api/cart/items/:productId` | Remove item from cart |
 | DELETE | `/api/cart` | Clear cart |
+| GET | `/api/discount/validate` | Validate a discount code |
 | POST | `/api/orders/checkout` | Checkout (apply discount code) |
 | GET | `/api/orders/:id` | Get order details |
 
@@ -112,4 +113,5 @@ All admin requests require `x-admin-key` header with the configured API key.
 - After every Nth order (default: 5), a discount code becomes available for generation
 - Admin calls the generate endpoint to create a code (format: `SAVE10-XXXX`)
 - Discount codes are single-use globally
+- Validate codes at checkout before placing order using the validation endpoint
 - Apply codes at checkout to reduce the order total
