@@ -2,6 +2,14 @@
 
 A fullstack monorepo ecommerce application with a Node.js/TypeScript REST API backend and React/TypeScript frontend. Features cart management, checkout with discount codes, and an admin dashboard. All state is held in-memory (no database).
 
+## Product Preview
+
+<div align="center">
+  <a href="https://www.loom.com/share/b4bc04a4d15948dfb32030cadc759bbe">
+    <img src="https://cdn.loom.com/sessions/thumbnails/b4bc04a4d15948dfb32030cadc759bbe-filmstrip-with-play.gif" alt="Product Preview" width="640" />
+  </a>
+</div>
+
 ## Tech Stack
 
 - **Monorepo**: pnpm workspaces + Turborepo
